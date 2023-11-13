@@ -4,6 +4,7 @@ const formRef = document.querySelector('.form');
 const submitButton = formRef.lastElementChild;
 formRef.addEventListener('submit', onSubmit);
 
+
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
