@@ -14,7 +14,7 @@ refs.btn.disabled = true;
 
 flatpickr(
   '#datetime-picker',
-  (options = {
+   {
     enableTime: true,
     time_24hr: true,
     defaultDate: new Date(),
@@ -22,7 +22,7 @@ flatpickr(
     onClose(selectedDates) {
       currentDate = calculateDate(selectedDates[0]);
     },
-  })
+  }
 );
 
 function calculateDate(fp) {
@@ -30,7 +30,7 @@ function calculateDate(fp) {
   const dataNow = Date.now();
   if (selecDate < dataNow) {
     Notify.failure('Please choose a date in the future', {
-     position: 'center-top'
+      position: 'center-top',
     });
     return;
   }
