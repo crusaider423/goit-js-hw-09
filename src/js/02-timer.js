@@ -11,6 +11,7 @@ const refs = {
 };
 refs.btn.addEventListener('click', onBtnClick);
 refs.btn.disabled = true;
+let currentDate;
 
 flatpickr(
   '#datetime-picker',
