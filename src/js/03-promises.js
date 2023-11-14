@@ -4,7 +4,6 @@ const formRef = document.querySelector('.form');
 const submitButton = formRef.lastElementChild;
 formRef.addEventListener('submit', onSubmit);
 
-
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
@@ -24,7 +23,7 @@ function onSubmit(e) {
   let ste = Number(step.value);
   let del = Number(delay.value);
 
-  for (let i = 0; i < amount.value; i += 1) {
+  for (let i = 1; i <= amount.value; i += 1) {
     createPromise(i, del)
       .then(({ position, delay }) => {
         Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);

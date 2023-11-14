@@ -8,23 +8,21 @@ const refs = {
   hoursMarkup: document.querySelector('[data-hours]'),
   minutesMarkup: document.querySelector('[data-minutes]'),
   secondsMarkup: document.querySelector('[data-seconds]'),
+  datePicker: document.querySelector('#datetime-picker'),
 };
 refs.btn.addEventListener('click', onBtnClick);
 refs.btn.disabled = true;
 let currentDate;
 
-flatpickr(
-  '#datetime-picker',
-   {
-    enableTime: true,
-    time_24hr: true,
-    defaultDate: new Date(),
-    minuteIncrement: 1,
-    onClose(selectedDates) {
-      currentDate = calculateDate(selectedDates[0]);
-    },
-  }
-);
+flatpickr(refs.datePicker, {
+  enableTime: true,
+  time_24hr: true,
+  defaultDate: new Date(),
+  minuteIncrement: 1,
+  onClose(selectedDates) {
+    currentDate = calculateDate(selectedDates[0]);
+  },
+});
 
 function calculateDate(fp) {
   const selecDate = fp.getTime();
@@ -41,6 +39,7 @@ function calculateDate(fp) {
 
 function onBtnClick() {
   refs.btn.disabled = true;
+  refs.datePicker.disabled = true;
   const intervalId = setInterval(() => {
     const { days, hours, minutes, seconds } = convertMs((currentDate -= 1000));
     refs.daysMarkup.textContent = addLeadingZero(days);
@@ -50,6 +49,8 @@ function onBtnClick() {
 
     if (currentDate < 1000) {
       clearInterval(intervalId);
+      refs.btn.disabled = false;
+      refs.datePicker.disabled = false;
     }
   }, 1000);
 }
